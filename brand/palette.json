@@ -1,0 +1,28 @@
+{
+  "name": "brunda-beauty-parlour",
+  "extractedFrom": "Business card (front + back), 2026-07-02",
+  "mode": {
+    "dark": {
+      "background": "#0B0B0D",
+      "surface": "#141216",
+      "surfaceAlt": "#1B181F",
+      "foreground": "#F3E7C9",
+      "foregroundMuted": "#B9A984",
+      "primary": "#D4A24A",
+      "primaryStrong": "#C08A2E",
+      "primaryForeground": "#0B0B0D",
+      "accent": "#7A1F2B",
+      "accentForeground": "#F3E7C9",
+      "plum": "#4A2B58",
+      "border": "#2A2530",
+      "ring": "#D4A24A"
+    }
+  },
+  "usage": {
+    "background": "Matte near-black — anchors the entire site, matches the card.",
+    "primary": "Champagne gold — headings, dividers, CTAs, map marker.",
+    "accent": "Deep bridal maroon — used sparingly (signature bridal section, subtle highlights).",
+    "plum": "Echoes the logomark goddess — reserved for a single decorative flourish.",
+    "foreground": "Cream text on dark — softer than pure white, warmer feel."
+  }
+}

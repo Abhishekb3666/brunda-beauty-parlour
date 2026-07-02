@@ -1,0 +1,172 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-plum: var(--plum);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --color-card: var(--surface);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--foreground);
+  --color-secondary: var(--surface-alt);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--surface-alt);
+  --color-input: var(--surface-alt);
+  --color-destructive: #d94848;
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-script: var(--font-script);
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-display);
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-2xl: 20px;
+}
+
+:root {
+  --background: #0B0B0D;
+  --surface: #141216;
+  --surface-alt: #1B181F;
+  --foreground: #F3E7C9;
+  --muted-foreground: #B9A984;
+  --primary: #D4A24A;
+  --primary-strong: #C08A2E;
+  --primary-foreground: #0B0B0D;
+  --accent: #7A1F2B;
+  --accent-foreground: #F3E7C9;
+  --plum: #4A2B58;
+  --border: #2A2530;
+  --ring: #D4A24A;
+  --radius: 10px;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    color-scheme: dark;
+    font-family: var(--font-body);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-body { font-family: var(--font-body); }
+  .font-script { font-family: var(--font-script); }
+
+  /* Script/italic glyphs overshoot the line box; background-clip:text only
+     paints inside the box, so pad it out (and pull back with negative margins
+     to keep layout identical) or ascenders/swashes render transparent. */
+  .text-gold {
+    background: linear-gradient(120deg, #C08A2E 0%, #E9C87A 45%, #D4A24A 65%, #C08A2E 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding: 0.2em 0.25em;
+    margin: -0.2em -0.25em;
+  }
+
+  .gold-shimmer {
+    background: linear-gradient(
+      100deg,
+      #C08A2E 0%,
+      #E9C87A 30%,
+      #FFF3D2 45%,
+      #E9C87A 60%,
+      #C08A2E 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 6s ease-in-out infinite;
+    filter: drop-shadow(0 1px 1px rgba(11, 11, 13, 0.8))
+      drop-shadow(0 0 20px rgba(212, 162, 74, 0.3));
+    /* Same box-padding trick as .text-gold — Great Vibes' capital swashes
+       extend well past the 0.9 line box and would otherwise be cut off. */
+    padding: 0.25em 0.3em;
+    margin: -0.25em -0.3em;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .hairline {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--border) 15%,
+      var(--primary) 50%,
+      var(--border) 85%,
+      transparent 100%
+    );
+  }
+
+  .vignette {
+    background:
+      radial-gradient(ellipse at top, rgba(122, 31, 43, 0.14), transparent 55%),
+      radial-gradient(ellipse at bottom right, rgba(74, 43, 88, 0.18), transparent 60%),
+      var(--background);
+  }
+
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba(212, 162, 74, 0.05) 1px, transparent 1px);
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+    opacity: 0.25;
+  }
+
+  .glow-pulse {
+    animation: glow-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212, 162, 74, 0.55); }
+    50% { box-shadow: 0 0 0 14px rgba(212, 162, 74, 0); }
+  }
+}
